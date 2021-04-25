@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
 
-class Counter {
+class CounterStore {
   @observable number = 0;
 
   constructor() {
@@ -16,4 +16,4 @@ class Counter {
   };
 }
 
-export default Counter;
+export default CounterStore;
