@@ -5,12 +5,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Counter from "./stores/counter";
+import Market from "./stores/market";
 
 const counter = new Counter();
+const market = new Market();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider counter={counter}>
+    <Provider counter={counter} market={market}>
       <App />
     </Provider>
   </React.StrictMode>,

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { observer } from "mobx-react";
 
 const Self = styled.div`
   display: flex;
@@ -35,17 +36,22 @@ interface BasketItemProps {
   name: string;
   price: string | number;
   count: number;
+  onTake: (name: string) => -1 | void;
 }
 
-function BasketItem({ name, price, count }: BasketItemProps) {
+function BasketItem({ name, price, count, onTake }: BasketItemProps) {
+  function handleReturn() {
+    onTake(name);
+  }
+
   return (
     <Self>
       <Name>{name}</Name>
       <Price>{price}</Price>
       <Count>{count}</Count>
-      <Return>Return</Return>
+      <Return onClick={handleReturn}>Return</Return>
     </Self>
   );
 }
 
-export default BasketItem;
+export default observer(BasketItem);

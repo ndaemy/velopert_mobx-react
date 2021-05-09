@@ -24,12 +24,17 @@ const Name = styled.h4`
 
 interface ShopItemProps {
   name: string;
-  price: string | number;
+  price: number;
+  onPut: (name: string, price: number) => void;
 }
 
-function ShopItem({ name, price }: ShopItemProps) {
+function ShopItem({ name, price, onPut }: ShopItemProps) {
+  function handleClick() {
+    onPut(name, price);
+  }
+
   return (
-    <Self>
+    <Self onClick={handleClick}>
       <Name>{name}</Name>
       <div>{price} won</div>
     </Self>

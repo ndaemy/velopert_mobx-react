@@ -1,16 +1,36 @@
 import BasketItem from "./BasketItem";
+import { inject, observer } from "mobx-react";
+import MarketStore, { Item } from "../stores/market";
 
-function BasketItemList() {
+interface BasketItemListProps {
+  items?: Item[];
+  total?: () => number;
+  onTake?: (name: string) => -1 | void;
+}
+
+function BasketItemList({ items, total, onTake }: BasketItemListProps) {
   return (
     <>
-      <BasketItem name="포카칩" price={1500} count={2} />
-      <BasketItem name="생수" price={850} count={1} />
-      <hr />
+      {items!.map(item => (
+        <BasketItem
+          key={item.name}
+          name={item.name}
+          price={item.price}
+          count={item.count}
+          onTake={onTake!}
+        />
+      ))}
       <p>
-        <b>총합: </b> 3850원
+        <b>총합: </b> {total}원
       </p>
     </>
   );
 }
 
-export default BasketItemList;
+export default inject<{ market: MarketStore }, unknown, any, unknown>(
+  ({ market }) => ({
+    items: market.selectedItems,
+    total: market.total,
+    onTake: market.take,
+  })
+)(observer(BasketItemList));
