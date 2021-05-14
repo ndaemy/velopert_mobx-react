@@ -1,9 +1,12 @@
 import { action, makeObservable, observable } from "mobx";
+import RootStore from "./index";
 
 class CounterStore {
-  @observable number = 0;
+  @observable number = 1;
+  root;
 
-  constructor() {
+  constructor(root: RootStore) {
+    this.root = root;
     makeObservable(this);
   }
 

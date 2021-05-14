@@ -4,15 +4,13 @@ import { Provider } from "mobx-react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Counter from "./stores/counter";
-import Market from "./stores/market";
+import RootStore from "./stores";
 
-const counter = new Counter();
-const market = new Market();
+const root = new RootStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider counter={counter} market={market}>
+    <Provider {...root}>
       <App />
     </Provider>
   </React.StrictMode>,
