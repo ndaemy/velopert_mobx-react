@@ -28,9 +28,14 @@ const Title = styled.h2`
 interface SuperMarketTemplateProps {
   items: React.ReactElement | null;
   basket: React.ReactElement | null;
+  total: React.ReactElement | null;
 }
 
-function SuperMarketTemplate({ items, basket }: SuperMarketTemplateProps) {
+function SuperMarketTemplate({
+  items,
+  basket,
+  total,
+}: SuperMarketTemplateProps) {
   return (
     <Self>
       <ItemsWrapper>
@@ -40,6 +45,7 @@ function SuperMarketTemplate({ items, basket }: SuperMarketTemplateProps) {
       <BasketWrapper>
         <Title>Basket</Title>
         {basket}
+        {total}
       </BasketWrapper>
     </Self>
   );

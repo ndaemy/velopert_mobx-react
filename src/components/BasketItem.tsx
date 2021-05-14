@@ -33,22 +33,24 @@ const Return = styled.div`
 `;
 
 interface BasketItemProps {
-  name: string;
-  price: string | number;
-  count: number;
+  item: {
+    name: string;
+    price: string | number;
+    count: number;
+  };
   onTake: (name: string) => -1 | void;
 }
 
-function BasketItem({ name, price, count, onTake }: BasketItemProps) {
+function BasketItem({ item, onTake }: BasketItemProps) {
   function handleReturn() {
-    onTake(name);
+    onTake(item.name);
   }
 
   return (
     <Self>
-      <Name>{name}</Name>
-      <Price>{price}</Price>
-      <Count>{count}</Count>
+      <Name>{item.name}</Name>
+      <Price>{item.price}</Price>
+      <Count>{item.count}</Count>
       <Return onClick={handleReturn}>Return</Return>
     </Self>
   );
